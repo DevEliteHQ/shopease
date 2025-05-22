@@ -1,3 +1,4 @@
+
 # ShopEase Backend
 
 ShopEase is an e-commerce website backend built with Node.js. It uses MySQL as the database and Sequelize as the ORM.
@@ -76,3 +77,4 @@ Contributions are welcome! Please fork the repository and create a pull request 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
