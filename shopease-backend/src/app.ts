@@ -1,7 +1,7 @@
-import dotenv from 'dotenv';
-import express from 'express';
-import { sequelize } from './config/database';
-import router from './routes/route';
+import dotenv from "dotenv";
+import express from "express";
+import { sequelize } from "./config/database";
+import router from "./routes/route";
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ const port = process.env.PORT || 4000;
     await sequelize.sync({ alter: true });
     console.log('database sync successfully');
   } catch (error) {
-    console.error('❌ Error syncing database:', error);
+    console.error("❌ Error syncing database:", error);
   }
 })();
 
