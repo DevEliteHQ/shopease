@@ -1,15 +1,13 @@
-import { Table, Column, Model, DataType, PrimaryKey } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement } from 'sequelize-typescript';
 
 @Table({
   tableName: 'users',
   timestamps: true, // This adds createdAt and updatedAt automatically
 })
 export default class Users extends Model {
-  @Column({
-    type: DataType.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  })
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   user_id!: number;
 
   @Column({

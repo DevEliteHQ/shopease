@@ -8,12 +8,12 @@ export const getUser = async (_req: express.Request, res: express.Response) => {
 
 export const addUser = async (req: express.Request, res: express.Response) => {
   const { name, email, password, phone } = req.body;
-  
+
   // Validate required fields
   if (!name || !email || !password) {
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'Missing required fields',
-      required: ['name', 'email', 'password']
+      required: ['name', 'email', 'password'],
     });
   }
 
@@ -28,15 +28,15 @@ export const addUser = async (req: express.Request, res: express.Response) => {
     return res.status(201).json(user);
   } catch (error: unknown) {
     if (error instanceof Error && error.name === 'SequelizeUniqueConstraintError') {
-      return res.status(400).json({ 
+      return res.status(400).json({
         message: 'Email already exists',
-        field: 'email'
+        field: 'email',
       });
     }
     console.error('Error creating user:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       message: 'Internal server error',
-      error: error instanceof Error ? error.message : 'Unknown error' 
+      error: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 };
@@ -47,9 +47,9 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
 
   // Validate required fields
   if (!name && !email) {
-    return res.status(400).json({ 
+    return res.status(400).json({
       message: 'At least one field is required to update',
-      fields: ['name', 'email']
+      fields: ['name', 'email'],
     });
   }
 
@@ -66,15 +66,15 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
     return res.status(200).json(user);
   } catch (error: unknown) {
     if (error instanceof Error && error.name === 'SequelizeUniqueConstraintError') {
-      return res.status(400).json({ 
+      return res.status(400).json({
         message: 'Email already exists',
-        field: 'email'
+        field: 'email',
       });
     }
     console.error('Error updating user:', error);
-    return res.status(500).json({ 
+    return res.status(500).json({
       message: 'Internal server error',
-      error: error instanceof Error ? error.message : 'Unknown error' 
+      error: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 };
