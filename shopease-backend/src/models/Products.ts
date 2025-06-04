@@ -1,11 +1,20 @@
 import { Model } from 'sequelize';
-import { AutoIncrement, Column, DataType, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+  AutoIncrement,
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  PrimaryKey,
+  Table,
+} from 'sequelize-typescript';
+import Categories from './Categories';
 
 @Table({
   tableName: 'products',
   timestamps: true,
 })
-export default class Products extends Model {
+export default class Products extends Model<Products> {
   @PrimaryKey
   @AutoIncrement
   @Column
@@ -29,11 +38,19 @@ export default class Products extends Model {
   })
   price!: number;
 
+  @ForeignKey(() => Categories)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: true,
   })
   category_id!: number;
+
+  @BelongsTo(() => Categories, {
+    foreignKey: 'category_id',
+    onDelete: 'SET NULL', // Optional but recommended
+    onUpdate: 'CASCADE',
+  })
+  category?: Categories;
 
   @Column({
     type: DataType.NUMBER,
@@ -41,6 +58,4 @@ export default class Products extends Model {
     defaultValue: 0,
   })
   stock!: number;
-
-  
 }
