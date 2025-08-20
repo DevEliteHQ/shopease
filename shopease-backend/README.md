@@ -33,10 +33,12 @@ ShopEase is an e-commerce website backend built with Node.js. It uses MySQL as t
 
 4. Create a `.env` file in the root directory and add your database configuration:
     ```env
+    NODE_ENV=development
     DB_HOST=your_database_host
     DB_USER=your_database_user
-    DB_PASSWORD=your_database_password
+    DB_PASS=your_database_password
     DB_NAME=your_database_name
+    DB_DIALECT='mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql'
     ```
 
 5. Run the database migrations:
